@@ -13,6 +13,10 @@ Data User
                  <?php else: ?>
                     <a class="btn btn-success" href="<?php echo e(route('user.create')); ?>"><span class="glyphicon glyphicon-plus"></span>Create</a>
                  <?php endif; ?> 
+
+                 <?php echo $__env->make('alert.success', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>   
+
+
                 <form method="get" action="<?php echo e(route('user.index')); ?>">
                     <div class="form-group">
                         <label for="keyword" class="col-sm-2 control-label">Search by name</label>

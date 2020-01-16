@@ -15,6 +15,10 @@ Data User
                  @else
                     <a class="btn btn-success" href="{{route('user.create')}}"><span class="glyphicon glyphicon-plus"></span>Create</a>
                  @endif 
+
+                 @include('alert.success')   
+
+
                 <form method="get" action="{{ route('user.index')}}">
                     <div class="form-group">
                         <label for="keyword" class="col-sm-2 control-label">Search by name</label>

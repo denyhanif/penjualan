@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Validator;
+
 
 class UserController extends Controller
 {
@@ -40,9 +42,25 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request)//fungsi menagkap ninputan tambah user
     {
-        //
+        $data= $request->all();
+        $validasi = Validator::make($data,[
+            'name'=>'required|max:255',
+            'email'=>'required|email|max:255|unique:users',
+            'username'=>'required|max:100|unique:users',
+            'password'=>'required|min:6',
+            'level'=>'required'
+        ]);
+
+        if($validasi->fails())
+        {
+            return redirect()->route('user.create')->withInput()->withErrors($validasi);
+        }
+        $data['password']= bcrypt($data['password']);
+        User::create($data);
+        return redirect()->route('user.index')->with('status','User Berhasil Ditambahkan');
+
     }
 
     /**
