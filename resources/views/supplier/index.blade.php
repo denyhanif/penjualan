@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-Data User
+Data Suppplier
 @endsection
 
 @section('content')
@@ -11,15 +11,15 @@ Data User
             <div class="box-header with-border">
 
                  @if(Request::get('keyword'))
-                    <a class="btn btn-success" href="{{route('user.index')}}"> Back </a>
+                    <a class="btn btn-success" href="{{route('supplier.index')}}"> Back </a>
                  @else
-                    <a class="btn btn-success" href="{{route('user.create')}}"><span class="glyphicon glyphicon-plus"></span>Create</a>
+                    <a class="btn btn-success" href="{{route('supplier.create')}}"><span class="glyphicon glyphicon-plus"></span>Create</a>
                  @endif 
 
                  @include('alert.success')   
 
 
-                <form method="get" action="{{ route('user.index')}}">
+                <form method="get" action="{{ route('supplier.index')}}">
                     <div class="form-group">
                         <label for="keyword" class="col-sm-2 control-label">Search by name</label>
                         <div class="col-sm-4">
@@ -36,7 +36,7 @@ Data User
             <div class="box body">
                 @if(Request::get('keyword'))
                     <div class="alert alert-success alert-block">
-                        Hasil pencarian dengan nama <b> {{Request::get('keyword')}}</b>
+                        Hasil pencarian supplier dengan nama <b> {{Request::get('keyword')}}</b>
                     </div>
                
                 @endif
@@ -44,30 +44,28 @@ Data User
                     <thead>
                         <tr>
                             <th width="5%">No</th>
-                            <th>Nama</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Level</th>
+                            <th>Nama Supplier</th>
+                            <th>alamat supplier</th>
+                            
                             <th width="30%">Action</th>
                         </tr>                    
                     </thead>
 
                     <tbody>
-                        @foreach($user as $row)
+                        @foreach($supplier as $row)
                             <tr>
-                                <td>{{ $loop -> iteration + ($user->perpage()*($user->currentPage()-1))}}</td>
-                                <td>{{ $row-> name}}</td>
-                                <td>{{ $row->username}}</td>
-                                <td>{{ $row->email}}</td>
-                                <td>{{ $row->level}}</td>
+                                <td>{{ $loop -> iteration + ($supplier->perpage()*($supplier->currentPage()-1))}}</td>
+                                <td>{{ $row-> nama_supplier}}</td>
+                                <td>{{ $row-> alamat_supplier}}</td>
+                                
                                 <td>
-                                    <form method="post" action="{{ route('user.destroy',[$row->id])}} " onsubmit="return confirm('Apakah anda yakin akan menghapus data ini?')">
+                                    <form method="post" action="{{ route('supplier.destroy',[$row->kd_supplier])}} " onsubmit="return confirm('Apakah anda yakin akan menghapus data ini?')">
                                     @csrf
                                     {{method_field('DELETE')}}
-                                    <a class="btn btn-warning" href="{{route('user.edit',[$row->id])}}">Edit</a>
+                                    <a class="btn btn-warning" href="{{route('supplier.edit',[$row->kd_supplier])}}">Edit</a>
 
                                     <button type="submit"  class="btn btn-danger">Hapus</button>
-                                    <a class="btn btn-info" href="{{route('user.show',[$row->id])}}">Detail</a>
+                                    
                                     </form>
                                 </td>
                             </tr>
@@ -75,7 +73,7 @@ Data User
                     </tbody>              
                 </table>
                 <!-- paging menjadi 2 halaman,, setting paginate si usercontroller-->
-                {{$user->appends(Request::all())->links()}}
+                {{$supplier->appends(Request::all())->links()}}
             </div>
         </div>
     </div>

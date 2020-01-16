@@ -59,7 +59,15 @@ Data User
                                 <td><?php echo e($row->email); ?></td>
                                 <td><?php echo e($row->level); ?></td>
                                 <td>
+                                    <form method="post" action="<?php echo e(route('user.destroy',[$row->id])); ?> " onsubmit="return confirm('Apakah anda yakin akan menghapus data ini?')">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo e(method_field('DELETE')); ?>
+
                                     <a class="btn btn-warning" href="<?php echo e(route('user.edit',[$row->id])); ?>">Edit</a>
+
+                                    <button type="submit"  class="btn btn-danger">Hapus</button>
+                                    <a class="btn btn-info" href="<?php echo e(route('user.show',[$row->id])); ?>">Detail</a>
+                                    </form>
                                 </td>
                             </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

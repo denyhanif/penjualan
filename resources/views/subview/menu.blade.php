@@ -8,8 +8,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="{{route('user.index')}}"><i class="fa fa-circle-o"></i> User</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+            <li ><a href="{{route('user.index')}}"><i class="fa fa-circle-o"></i> User</a></li>
+            <li ><a href="{{route('supplier.index')}}"><i class="fa fa-circle-o"></i> Supplier</a></li>
+
+            <li><a href="{{route('pegawai.index')}}"><i class="fa fa-circle-o"></i> Pegawai </a></li>
           </ul>
         </li>
         <li class="treeview">

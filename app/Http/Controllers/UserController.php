@@ -72,7 +72,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user=User::findOrFail($id);
+        return view('user.show',compact('user'));//compact untuk parsing data dri tabel user dengan parameter id
     }
 
     /**
@@ -130,6 +131,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data=User::findOrFail($id);
+        $data->delete();
+        return redirect()->route('user.index')->with('status','Userber hasil di hapus');
     }
 }
