@@ -60,7 +60,9 @@ Data User
                                 <td>{{ $row->username}}</td>
                                 <td>{{ $row->email}}</td>
                                 <td>{{ $row->level}}</td>
-                                <td>-</td>
+                                <td>
+                                    <a class="btn btn-warning" href="{{route('user.edit',[$row->id])}}">Edit</a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>              

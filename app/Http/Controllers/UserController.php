@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Validator;
+use Illuminate\Support\Arr;
 
 
 class UserController extends Controller
@@ -82,7 +83,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user=User::findOrfail($id);
+        return view('user.edit',compact('user'));
     }
 
     /**
@@ -94,7 +96,30 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrfail($id);
+        $data= $request->all();
+
+        $validasi = Validator::make($data,[
+            'name'=>'required|max:255',
+            'username'=>'required|max:100|unique:users,username,'.$id,
+            'email'=>'required|email|max:255|unique:users,email,'.$id,
+            'password'=>'sometimes|nullable|min:6'//sometimes untuk kalau menggi passs maka validasi tsb akan di gunakan
+        ]);
+
+        if($validasi->fails()){
+            return redirect()->route('user.edit',[$id])->withErrors($validasi);
+
+        }
+
+        if($request->input('password')){
+            $data['password']=bcrypt($data['password']);
+        }else{
+            $data= Arr::except($data,['password']);//metod except guna saat pass tidak di isi bagian pass tidak ikut ke upadate
+        }
+
+        $user->update($data);
+        return redirect()->route('user.index')->with('status','data user berhasil di ubah');
+
     }
 
     /**

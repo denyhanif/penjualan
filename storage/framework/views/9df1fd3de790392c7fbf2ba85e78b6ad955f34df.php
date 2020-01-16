@@ -58,7 +58,9 @@ Data User
                                 <td><?php echo e($row->username); ?></td>
                                 <td><?php echo e($row->email); ?></td>
                                 <td><?php echo e($row->level); ?></td>
-                                <td>-</td>
+                                <td>
+                                    <a class="btn btn-warning" href="<?php echo e(route('user.edit',[$row->id])); ?>">Edit</a>
+                                </td>
                             </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>              

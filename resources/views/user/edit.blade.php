@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-Tambah data user
+Ubah data user
 @endsection
 
 @section('content')
@@ -12,27 +12,28 @@ Tambah data user
                 @include('alert.eror')            
             </div>
                     <div class="box-body">
-                    <form class="form-horizontal" method="post" action="{{ route('user.store') }}">
+                    <form class="form-horizontal" method="post" action="{{ route('user.update',[$user->id]) }}">
                     @csrf
+                    {{method_field('PUT')}}
                     <div class="box-body">
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">Nama</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+                                <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="username" class="col-sm-2 control-label">Username</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}">
+                                <input type="text" class="form-control" id="username" name="username" value="{{ $user->username }}">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="email" class="col-sm-2 control-label">Email</label>
                             <div class="col-sm-10">
-                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
+                            <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
                             </div>
                         </div>
 
@@ -47,15 +48,15 @@ Tambah data user
                                 <label for="level" class="col-sm-2 control-label">Level</label>
                                 <div class="col-sm-10">
                                 <select name="level" id="level" class="form-control">
-                                    <option value="admin">Administrator</option>
-                                    <option value="staff">Staff</option>
+                                    <option value="admin" @if($user->level == "admin") Selected @endif >Administrator</option>
+                                    <option value="staff" @if($user->level == "staf") Selected @endif >Staff</option>
                                 </select>
                                 </div>
                             </div>
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
-                        <button type="submit" name="tombol" class="btn btn-info pull-right">Save</button>
+                        <button type="submit" name="tombol" class="btn btn-info pull-right">Update</button>
                     </div>
                     <!-- /.box-footer -->
                     </form>
@@ -65,4 +66,6 @@ Tambah data user
     </div>
 
 </div>
+
+
 @endsection
