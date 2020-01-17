@@ -42,6 +42,11 @@ return [
     */
 
     'disks' => [
+            //membuat direktori baru untuk menyimpan hasil uppload
+        'upload'=>[
+            'driver'=>'local',
+            'root'=>public_path('uploads'),//posisi folder unutk menampung ke folder public -> folder uploads
+        ],//
 
         'local' => [
             'driver' => 'local',

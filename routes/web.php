@@ -28,3 +28,5 @@ Route::match(["GET","POST"],"/register",function(){
 Route::resource('user','UserController');
 Route::resource('supplier','SupplierController')->except(['show']);
 Route::resource('pegawai', 'PegawaiController')->except(['show']);
+Route::resource('kategori', 'KategoriController')->except(['show']);
+Route::resource('produk', 'ProdukController')->except(['show']);
