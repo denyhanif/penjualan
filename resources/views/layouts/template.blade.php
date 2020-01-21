@@ -66,7 +66,20 @@
 <script src="{{asset('adminlte/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('adminlte/dist/js/demo.js')}}"></script>
+
+<link rel="stylesheet" href="{{asset('adminlte/bower_components/boorstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
+<script src="{{asset('adminlte/bower_components/boorstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+
+<script>
+$(function () {
+  $('.datepicker').datepicker({
+    autoclose:true,
+    format:'yyyy-mm-dd'
+  });
   
+});
+</script>
+
   
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

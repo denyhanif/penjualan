@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-Update data Kategori
+Update data produk
 @endsection
 
 @section('content')
@@ -12,29 +12,47 @@ Update data Kategori
                 @include('alert.eror')            
             </div>
                     <div class="box-body">
-                    <form class="form-horizontal" method="post" action="{{ route('kategori.update',[$kategori->kd_kategori]) }}" enctype="multipart/form-data"><!-- enctype mengambil gambar -->
-
+                    <form class="form-horizontal" method="post" action="{{ route('produk.update',[$produk->kd_produk]) }}" enctype="multipart/form-data" >
                     @csrf
                     {{method_field('PUT')}}
                     <div class="box-body">
+
                         <div class="form-group">
-                            <label for="kategori" class="col-sm-2 control-label">Nama Kategori</label>
+                            <label for="nama_produk" class="col-sm-2 control-label">Nama Produk</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="kategori" name="kategori" value="{{ $kategori->kategori}}">
+                                <input type="text" class="form-control" id="nama_produk" name="nama_produk" value="{{ $produk->nama_produk }}">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="gambar_kategori" class="col-sm-2 control-label">Gambar sekarang</label>
+                            <label for="kd_kategori" class="col-sm-2 control-label">Katagori</label>
                             <div class="col-sm-10">
-                                <img class="img_thumbnail" src="{{asset('uploads/'.$kategori->gambar_kategori)}}" width="100px">
+                                    <select name="kd_kategori" calss="form-control" id="kd_kategori">
+                                        @foreach($kategori as $row)
+                                            <option value="{{$row->kd_kategori}}" @if($produk->kd_kategori==$row->kd_kategori) Selected @endif>{{$row->kategori}}</option>
+                                        @endforeach
+                                    </select>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="gambar_kategori" class="col-sm-2 control-label">Pilih Gambar Baru</label>
+                            <label for="harga" class="col-sm-2 control-label">Harga Produk</label>
                             <div class="col-sm-10">
-                                <input type="file" class="form-control" name="gambar_kategori" id="gambar_kategori">
+                                <input type="text" class="form-control" id="" name="harga" value="{{ $produk->harga }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gambar_produk" class="col-sm-2 control-label">Gambar Produk</label>
+                            <div class="col-sm-10">
+                            <img class="img-thumbnail" width= "100px" src="{{asset('uploads/'.$produk->gambar_produk)}}" />
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gambar_produk" class="col-sm-2 control-label">Gambar Produk</label>
+                            <div class="col-sm-10">
+                                <input type="file" name="gambar_produk" id="gambar_produk" class="form-control" />
                             </div>
                         </div>
 

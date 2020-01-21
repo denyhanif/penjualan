@@ -28,7 +28,7 @@ Tambahkan Produk
                             <div class="col-sm-10">
                                     <select name="kd_kategori" calss="form-control" id="kd_kategori">
                                         @foreach($kategori as $row)
-                                            <option value="{{$row->kategori}}">{{$row->kategori}}</option>
+                                            <option value="{{$row->kd_kategori}}">{{$row->kategori}}</option>
                                         @endforeach
                                     </select>
                             </div>
@@ -44,7 +44,7 @@ Tambahkan Produk
                         <div class="form-group">
                             <label for="gambar_produk" class="col-sm-2 control-label">Gambar Produk</label>
                             <div class="col-sm-10">
-                                <input type="file" name="gambar_pproduk" id="gambar_produk" class="form-control" />
+                                <input type="file" name="gambar_produk" id="gambar_produk" class="form-control" />
                             </div>
                         </div>
 

@@ -30,3 +30,4 @@ Route::resource('supplier','SupplierController')->except(['show']);
 Route::resource('pegawai', 'PegawaiController')->except(['show']);
 Route::resource('kategori', 'KategoriController')->except(['show']);
 Route::resource('produk', 'ProdukController')->except(['show']);
+Route::resource('transaksi_masuk','TransaksiMasukController')->only(['index','create','store','destroy']);
