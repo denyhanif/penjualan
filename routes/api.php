@@ -18,3 +18,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('agen','Api\AgenController');
+//Route::apiResource('search_agen','Api\AgenController@search');
+Route::get('search_agen','Api\AgenController@search');
+Route::post('login_pegawai','Api\PegawaiController@login_pegawai');
+Route::get('get_kategori','Api\KategoriController@get_all');
+Route::post('get_produk','Api\ProdukController@get_produk_kategori');
+Route::post('add_cart','Api\TransaksiController@add_cart');
+Route::post('get_cart','Api\TransaksiController@get_cart');
+Route::post('delete_item_cart','Api\TransaksiController@delete_item_cart');
+Route::post('delete_cart','Api\TransaksiController@delete_cart');
+Route::post('checkout','Api\TransaksiController@checkout');

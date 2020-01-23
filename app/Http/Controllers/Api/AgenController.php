@@ -177,4 +177,10 @@ class AgenController extends Controller
             'msg'=>'Data berhasil di hapus'
         ],200);
     }
+
+    public function search(Request $request){
+
+        $filterKeyword = $request->get('keyword');
+        return AgenResource::collection(Agen::where('nama_toko','LIKE',"%$filterKeyword%")->get());
+    }
 }

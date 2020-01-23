@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTransaksiDetailTablee extends Migration
+class CreateKeranjangTablee extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateTransaksiDetailTablee extends Migration
      */
     public function up()
     {
-        Schema::create('transaksi_detail', function (Blueprint $table) {
-            $table->increments('kd_transaksi_detail');
-            $table->string('no_faktur',100);
-            $table->foreign('no_faktur')->references('no_faktur')->on('transaksi');
+        Schema::create('keranjang', function (Blueprint $table) {
+            $table->increments('kd_keranjang');
+            $table->string('username',100);
+            $table->foreign('username')->references('username')->on('pegawai');
             $table->unsignedInteger('kd_produk');
             $table->foreign('kd_produk')->references('kd_produk')->on('produk');
             $table->integer('jumlah');
             $table->integer('harga');
-            
-
             $table->timestamps();
         });
     }
@@ -34,12 +32,9 @@ class CreateTransaksiDetailTablee extends Migration
      */
     public function down()
     {
-        Schema::create('transaksi_detail', function (Blueprint $table) {
-            $table->dropForeign(['no_faktur']);
+        Schema::create('keranjang', function (Blueprint $table) {
+            $table->dropForeign(['username']);
             $table->dropForeign(['kd_produk']);
-        
         });
-        Schema::dropIfExists('transaksi_detail');
-        
-    }
+        Schema::dropIfExists('keranjang');    }
 }

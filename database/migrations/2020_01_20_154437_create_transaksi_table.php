@@ -21,7 +21,7 @@ class CreateTransaksiTable extends Migration
             $table->foreign('kd_agen')->references('kd_agen')->on('agen');
             $table->string('username',100);
             $table->foreign('username')->references('username')->on('pegawai');
-
+           // $table->integer('total');
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DeleteTransaksiDetailTable extends Migration
+class DeleteKeranjangTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class DeleteTransaksiDetailTable extends Migration
      */
     public function up()
     {
-        Schema::drop('transaksi_detail');
+        Schema::drop('keranjang');
     }
 
     /**
@@ -23,6 +23,6 @@ class DeleteTransaksiDetailTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('keranjang');
     }
 }

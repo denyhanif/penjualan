@@ -14,9 +14,8 @@ class CreateKeranjangTable extends Migration
     public function up()
     {
         Schema::create('keranjang', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('username',100);
-            
+            $table->increments('kd_keranjang');
+            $table->string('username',100);  
             $table->foreign('username')->references('username')->on('pegawai');
             $table->unsignedInteger('kd_produk');
             $table->foreign('kd_produk')->references('kd_produk')->on('produk');
