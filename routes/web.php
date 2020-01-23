@@ -31,3 +31,7 @@ Route::resource('pegawai', 'PegawaiController')->except(['show']);
 Route::resource('kategori', 'KategoriController')->except(['show']);
 Route::resource('produk', 'ProdukController')->except(['show']);
 Route::resource('transaksi_masuk','TransaksiMasukController')->only(['index','create','store','destroy']);
+Route::get('agen','AgenController@index')->name('agen');//name = nama route yang di gunakan subview-> menu blade
+Route::get('report_penjualan','ReportPenjualanController@index')->name('report_penjualan');//name = nama route yang di gunakan subview-> menu blade
+Route::get('cetak_pdf','ReportPenjualanController@cetak_pdf')->name('cetak_pdf');//name = nama route yang di gunakan subview-> menu blade
+Route::get('cetak_excel','ReportPenjualanController@cetak_excel')->name('cetak_excel');

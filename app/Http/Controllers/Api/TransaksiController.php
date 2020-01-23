@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\KeranjangResource;
+use App\Http\Resources\TransaksiResource;
+use App\Http\Resources\TransaksiDetailResource;
+
 use App\Produk;
 use App\Keranjang;
 use App\Transaksi;
@@ -166,5 +169,31 @@ class TransaksiController extends Controller
             $total = $total + ($row->jumlah * $row->harga);
         }
         return $total;
+    }
+
+    function get_transaksi(Request $request){
+        $username= $request->input('username');
+        $data_transaksi = Transaksi::where('username',$username)->get();// mencari username sesuai inputan
+        if($data_transaksi->isEmpty()){
+            return response()->json([
+                'status'=>FALSE,
+                'msg'=>'Record tidak ditemukan'
+            ],200);
+        }
+        return TransaksiResource::collection($data_transaksi);
+
+    }
+
+    function get_detail_transaksi(Request $request){
+        $no_faktur = $request->input('no_faktur');
+        $data_transaksi_detail = TransaksiDetail::where('no_faktur',$no_faktur)->get();
+        if($data_transaksi_detail->isEmpty()){
+            return response()->json([
+                'status'=>FALSE,
+                'msg'=>'Record tidak ditemukan'
+            ],200);
+        }
+        return TransaksiDetailResource::collection($data_transaksi_detail);//collection karene di mungkinkan data lebihdari 1
+        
     }
 }

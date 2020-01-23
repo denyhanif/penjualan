@@ -28,3 +28,5 @@ Route::post('get_cart','Api\TransaksiController@get_cart');
 Route::post('delete_item_cart','Api\TransaksiController@delete_item_cart');
 Route::post('delete_cart','Api\TransaksiController@delete_cart');
 Route::post('checkout','Api\TransaksiController@checkout');
+Route::post('get_transaksi','Api\TransaksiController@get_transaksi');
+Route::post('get_detail_transaksi','Api\TransaksiController@get_detail_transaksi');
