@@ -1,6 +1,13 @@
 <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview">
+        <li>
+          <a href="{{ route('home')}}">
+            <i class="fa fa-th"></i> <span> Home</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Master</span>
             <span class="pull-right-container">
@@ -8,7 +15,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
+            @if(Auth::user()->level =='admin')
             <li ><a href="{{route('user.index')}}"><i class="fa fa-circle-o"></i> User</a></li>
+            @endif
             <li ><a href="{{route('supplier.index')}}"><i class="fa fa-circle-o"></i> Supplier</a></li>
 
             <li><a href="{{route('pegawai.index')}}"><i class="fa fa-circle-o"></i> Pegawai </a></li>

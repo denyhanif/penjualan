@@ -15,6 +15,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    public function __construct()
+    {
+        $this->middleware('admin');
+        
+    }
     public function index(Request $request)
     {
         $user = User::paginate(2);//metod paginate di gunakan untuk mengambil data berdasarkan pagign ==setiap halaman di talpilkan 2 resource

@@ -16,7 +16,6 @@ class TransaksiMasukController extends Controller
      */
     public function index(Request $request)
     {
-
         $transaksi_masuk = TransaksiMasuk::orderBy('tgl_transaksi','DESC')->paginate('5');
         
         $start_date = $request->get('start_date');
@@ -30,6 +29,20 @@ class TransaksiMasukController extends Controller
         }
         
         return view('transaksi_masuk.index',compact('transaksi_masuk','start_date','end_date'));
+
+        // $transaksi_masuk = TransaksiMasuk::orderBy('tgl_transaksi','DESC')->paginate('5');
+        
+        // $start_date = $request->get('start_date');
+        // $end_date = $request->get('end_date');
+
+        // if($start_date != "" && $end_date != "")
+        // {
+        //     $transaksi_masuk = TransaksiMasuk::whereBetween('tgl_transaksi',[$start_date,$end_date])->orderBy('tgl_transaksi','DESC')->paginate(20);
+        //     $start_date = \Carbon\Carbon::parse($start_date)->format('d-F-Y');
+        //     $end_date = \Carbon\Carbon::parse($end_date)->format('d-F-Y');
+        // }
+        
+        // return view('transaksi_masuk.index',compact('transaksi_masuk','start_date','end_date'));
     }
     /**
      * Show the form for creating a new resource.

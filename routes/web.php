@@ -17,14 +17,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::match(["GET","POST"],"/register",function(){
     return redirect('login');}
 )->name("register");
 
+
 //Route::view('template','layouts.template');
 
+Route::group(['middleware'=>['auth']],function(){
+
+    
+Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('user','UserController');
 Route::resource('supplier','SupplierController')->except(['show']);
 Route::resource('pegawai', 'PegawaiController')->except(['show']);
@@ -35,3 +38,5 @@ Route::get('agen','AgenController@index')->name('agen');//name = nama route yang
 Route::get('report_penjualan','ReportPenjualanController@index')->name('report_penjualan');//name = nama route yang di gunakan subview-> menu blade
 Route::get('cetak_pdf','ReportPenjualanController@cetak_pdf')->name('cetak_pdf');//name = nama route yang di gunakan subview-> menu blade
 Route::get('cetak_excel','ReportPenjualanController@cetak_excel')->name('cetak_excel');
+
+});

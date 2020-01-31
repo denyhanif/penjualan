@@ -1,6 +1,13 @@
 <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview">
+        <li>
+          <a href="<?php echo e(route('home')); ?>">
+            <i class="fa fa-th"></i> <span> Home</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Master</span>
             <span class="pull-right-container">
@@ -8,7 +15,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
+            <?php if(Auth::user()->level =='admin'): ?>
             <li ><a href="<?php echo e(route('user.index')); ?>"><i class="fa fa-circle-o"></i> User</a></li>
+            <?php endif; ?>
             <li ><a href="<?php echo e(route('supplier.index')); ?>"><i class="fa fa-circle-o"></i> Supplier</a></li>
 
             <li><a href="<?php echo e(route('pegawai.index')); ?>"><i class="fa fa-circle-o"></i> Pegawai </a></li>
